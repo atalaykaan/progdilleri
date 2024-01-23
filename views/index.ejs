@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>WatchMe</title>
+</head>
+<body>
+
+  <header>
+    <div id="logo"><a href="/">WatchMe</a></div>
+    <% if(isLoggedIn){ %>
+      <a href="/logout">
+        <button id="logout-btn">Logout</button>
+      </a>
+    <% } else{ %>  
+      <a href="/login">
+        <button id="login-btn">Login</button>
+      </a>
+    <% } %>
+  </header>
+
+  <div id="feed">
+        <%/*
+        <p class="video-title">Title</p>
+        <button class="hamburger">
+          <div class="bar"></div>
+        </button>
+        <video controls src="test.mp4" width="420"></video>
+        <h3>Uploader</h3>
+        <p>Description<p>*/%>
+          <ul>
+            <% for(var i = 0; i < videos.length; i++){ %>
+              <li>
+                <strong>Title:</strong> <%= videos[i].title %><br>
+                <strong>Description:</strong> <%= videos[i].description %><br>
+              </li>
+            <% }; %>
+  </div>
+  
+  <main>
+    
+    <div id="upload-area">
+      <h2>Upload Your Video</h2>
+      <form action="/upload" id="upload-form" method="post">
+        <div class="form-group">
+          <label for="video-title">Title:</label>
+          <input type="text" id="video-title" name="videotitle" required>
+        </div>
+        <div class="form-group">
+          <label for="video-description">Description:</label>
+          <input type="text" id="video-description" name="videodescription" rows="4" required></input>
+        </div>
+        <input type="file" id="video-file" name="video">
+        <button type="submit" class="btn" id="submit-btn">Upload</button>
+      </form>
+    </div>
+
+  </main>
+  <script src="main.js"></script>
+
+</body>
+</html>
